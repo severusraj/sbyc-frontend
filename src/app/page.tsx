@@ -11,6 +11,7 @@ import {
 	PageHeaderHeading,
 } from "@/components/page-header";
 import { Features } from "@/components/display/features/features";
+import { Pricing } from "@/components/display/pricing/pricing";
 
 export default function Home() {
 	return (
@@ -51,6 +52,7 @@ export default function Home() {
 				</PageHeaderContainer>
 			</PageHeader>
 			<Features />
+			<Pricing />
 		</>
 	);
 }
