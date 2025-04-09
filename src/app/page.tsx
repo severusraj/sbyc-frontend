@@ -10,6 +10,7 @@ import {
 	PageHeaderDescription,
 	PageHeaderHeading,
 } from "@/components/page-header";
+import { Features } from "@/components/display/features/features";
 
 export default function Home() {
 	return (
@@ -49,6 +50,7 @@ export default function Home() {
 					</PageActions>
 				</PageHeaderContainer>
 			</PageHeader>
+			<Features />
 		</>
 	);
 }
