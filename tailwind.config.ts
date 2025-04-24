@@ -15,6 +15,11 @@ export default {
 					"2xl": "1400px",
 				},
 			},
+			colors: {
+				background: "#f8fafc",
+				primary: "#1e3054",
+				secondary: "#1e3a8a",
+			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],

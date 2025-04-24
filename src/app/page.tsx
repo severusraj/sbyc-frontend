@@ -1,58 +1,107 @@
 import * as React from "react";
-import Link from "next/link";
-import { Ship, Waves, Anchor } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { SectionList } from "@/components/section-list";
 import {
-	PageActions,
-	PageHeader,
-	PageHeaderContainer,
-	PageHeaderDescription,
-	PageHeaderHeading,
-} from "@/components/page-header";
-import { Features } from "@/components/display/features/features";
-import { Pricing } from "@/components/display/pricing/pricing";
+	Hero,
+	Features,
+	Moments,
+	Pricing,
+	Hotel,
+	Dining,
+	Events,
+	Facilities,
+	Clubs,
+	Testimonials,
+	CallToAction,
+} from "@/components/sections";
+import { headingAndDescription } from "@/lib/constants";
+import { data } from "@/mocked-data/data";
+import type { FacilitiesData } from "@/types/FacilitiesData";
 
-export default function Home() {
+export default function HomePage() {
 	return (
 		<>
-			<PageHeader>
-				<div className="absolute top-10 right-10 text-blue-600 opacity-80">
-					<Ship size={120} />
-				</div>
-				<div className="absolute bottom-0 left-0 w-full text-blue-600 opacity-10">
-					<Waves size={1200} />
-				</div>
-				<PageHeaderContainer>
-					<div className="flex justify-center mb-6">
-						<Anchor className="size-16 text-yellow-500" />
-					</div>
-					<PageHeaderHeading>Welcome to Subic Bay Yacht Club</PageHeaderHeading>
-					<div className="h-1 w-48 bg-yellow-500 mx-auto my-8" />
-					<PageHeaderDescription>
-						Experience the perfect blend of luxury living and world-class
-						sailing in the heart of Subic Bay. Enjoy breathtaking ocean views,
-						premium amenities, and an exclusive waterfront lifestyle like no
-						other.
-					</PageHeaderDescription>
-					<PageActions>
-						<Link
-							href="/sign-up"
-							className={cn(
-								buttonVariants({
-									size: "xl",
-									className:
-										"text-white transition-all duration-300 hover:shadow-xl hover:shadow-blue-600",
-								}),
-							)}
-						>
-							Explore Membership
-						</Link>
-					</PageActions>
-				</PageHeaderContainer>
-			</PageHeader>
-			<Features />
-			<Pricing />
+			<Hero
+				title={headingAndDescription.heroSection.title}
+				description={headingAndDescription.heroSection.description}
+			/>
+			<SectionList
+				id="features"
+				title={headingAndDescription.featuresSection.title}
+				description={headingAndDescription.featuresSection.description}
+			>
+				<Features items={data.features} />
+			</SectionList>
+			<SectionList
+				id="moments"
+				title={headingAndDescription.momentsSection.title}
+				description={headingAndDescription.momentsSection.description}
+				className="bg-secondary/5"
+			>
+				<Moments items={data.moments} />
+			</SectionList>
+			<SectionList
+				id="pricing"
+				title={headingAndDescription.pricingSection.title}
+				description={headingAndDescription.pricingSection.description}
+			>
+				<Pricing
+					title={headingAndDescription.pricingSection.footer.title}
+					description={headingAndDescription.pricingSection.footer.description}
+				/>
+			</SectionList>
+			<SectionList
+				id="hotel"
+				title={headingAndDescription.hotelSection.title}
+				description={headingAndDescription.hotelSection.description}
+				className="bg-secondary/5"
+			>
+				<Hotel items={data.hotel} />
+			</SectionList>
+			<SectionList
+				id="dining"
+				title={headingAndDescription.diningSection.title}
+				description={headingAndDescription.diningSection.description}
+			>
+				<Dining items={data.dining} />
+			</SectionList>
+			<SectionList
+				id="events"
+				title={headingAndDescription.eventsSection.title}
+				description={headingAndDescription.eventsSection.description}
+				className="bg-secondary/5"
+			>
+				<Events items={data.events} />
+			</SectionList>
+			<SectionList
+				id="facilities"
+				title={headingAndDescription.facilitiesSection.title}
+				description={headingAndDescription.facilitiesSection.description}
+			>
+				<Facilities items={data.facilities as FacilitiesData[]} />
+			</SectionList>
+			<SectionList
+				id="clubs"
+				title={headingAndDescription.clubSection.title}
+				description={headingAndDescription.clubSection.description}
+				className="bg-secondary/5"
+			>
+				<Clubs items={data.club} />
+			</SectionList>
+			<SectionList
+				id="testimonials"
+				title={headingAndDescription.testimonialsSection.title}
+				description={headingAndDescription.testimonialsSection.description}
+			>
+				<Testimonials items={data.testimonials} />
+			</SectionList>
+			<SectionList
+				id="call-to-action"
+				title={headingAndDescription.ctaSection.title}
+				description={headingAndDescription.ctaSection.description}
+				className="bg-secondary/5"
+			>
+				<CallToAction />
+			</SectionList>
 		</>
 	);
 }

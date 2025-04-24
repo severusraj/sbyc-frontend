@@ -1,9 +1,10 @@
 import * as React from "react";
+import { unstable_ViewTransition as ViewTransition } from "react";
 import type { Metadata } from "next";
-import { siteConfig } from "@/lib/config";
-import { geist } from "@/lib/fonts";
-import { Navbar } from "@/components/navigation/navbar";
-import { PageTransition } from "@/components/page-transition";
+import { manrope } from "@/lib/fonts";
+import { siteConfig } from "@/lib/site";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		creator: "@severusraj",
+		creator: siteConfig.creator,
 	},
 };
 
@@ -41,11 +42,12 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
-				className={`${geist.className} bg-blue-50 text-blue-900 antialiased`}
+				className={`${manrope.className} bg-background text-primary antialiased`}
 			>
 				<main className="min-h-screen">
 					<Navbar />
-					<PageTransition>{children}</PageTransition>
+					<ViewTransition>{children}</ViewTransition>
+					<Footer />
 				</main>
 			</body>
 		</html>

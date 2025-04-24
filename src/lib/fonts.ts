@@ -1,7 +1,6 @@
-import { Geist } from "next/font/google";
- 
- export const geist = Geist({
- 	subsets: ["latin"],
- 	display: "swap",
- 	variable: "--font-geist",
- });
+import { Manrope } from "next/font/google";
+
+export const manrope = Manrope({
+	subsets: ["latin"],
+	variable: "--font-manrope",
+});

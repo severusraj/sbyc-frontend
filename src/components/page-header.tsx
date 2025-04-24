@@ -1,82 +1,58 @@
 import * as React from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
+type PageHeaderBaseElement = HTMLElementTagNameMap["div"];
+
+type PageHeaderProps = React.HTMLAttributes<PageHeaderBaseElement> & {
+	title: string;
+	description: string;
+};
+
+type PageHeaderImageProps = {
+	src: string;
+	alt: string;
+};
+
+export function PageHeaderImage({ src, alt }: PageHeaderImageProps) {
+	return (
+		<div className="absolute inset-0">
+			<Image
+				src={src}
+				alt={alt}
+				priority
+				quality={100}
+				fill
+				sizes="60vw"
+				style={{
+					objectFit: "cover",
+					objectPosition: "center",
+				}}
+			/>
+			<div className="absolute inset-0 bg-black/40" />
+		</div>
+	);
+}
+
 export function PageHeader({
+	title,
+	description,
 	className,
 	children,
 	...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: PageHeaderProps) {
 	return (
 		<div
-			className={cn(
-				"relative w-full py-20 md:py-32 overflow-hidden bg-gradient-to-b from-blue-800 to-blue-700",
-				className,
-			)}
+			className={cn("relative h-[400px] w-full overflow-hidden", className)}
 			{...props}
 		>
 			{children}
-		</div>
-	);
-}
-
-export function PageHeaderContainer({
-	className,
-	children,
-	...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-	return (
-		<div
-			className={cn(
-				"relative z-10 max-w-5xl mx-auto text-center px-4 sm:px-0",
-				className,
-			)}
-			{...props}
-		>
-			{children}
-		</div>
-	);
-}
-
-export function PageHeaderHeading({
-	className,
-	...props
-}: React.HTMLAttributes<HTMLHeadingElement>) {
-	return (
-		<h1
-			className={cn(
-				"text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl",
-				className,
-			)}
-			{...props}
-		/>
-	);
-}
-
-export function PageHeaderDescription({
-	className,
-	...props
-}: React.HTMLAttributes<HTMLParagraphElement>) {
-	return (
-		<p
-			className={cn("mt-6 text-xl text-blue-100 max-w-2xl mx-auto", className)}
-			{...props}
-		/>
-	);
-}
-
-export function PageActions({
-	className,
-	children,
-	...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-	return (
-		<div
-			className={cn(
-				"mt-10 flex flex-col gap-4 sm:flex-row justify-center",
-				className,
-			)}
-		>
-			{children}
+			<div className="container relative flex flex-col gap-3 text-white z-10 items-center justify-center size-full text-center">
+				<h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+					{title}
+				</h1>
+				<p className="mx-auto max-w-3xl text-lg md:text-xl">{description}</p>
+			</div>
 		</div>
 	);
 }
